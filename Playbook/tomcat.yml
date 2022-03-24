@@ -1,24 +1,28 @@
 ---
-- name: Install Tomcat
+- name: Install tomcat
   become: yes
   hosts: all
+  vars:
+          - username: tomcat
+          - default_shell: /bin/false
+          - group: tomcat
+          - home_dir: /opt/tomcat
   tasks:
-- name: Update repository
-  apt:
-    update_cache: yes
-    state: presesnt
-    when: ansible_facts['os_family'] == "Debian"
-- name: INstall jdk on ubuntu
-  ansible.builtin.apt:
-   name: openjdk-11-jdk
-   update_cache: yes
-- name: create new user
-  ansible.builtin.user:
-    name: tomcat
-    crecate_home: yes
-    group: tomcat
-    home: /opt/tomcat
-    shell: /bin/false
-    state: present
-  when: ansible_facts['os_family'] == "Debian"
+     - name: update cache
+       apt:
+                update_cache: yes
+                when: ansible_facts['os_family'] == "Debian"
 
+     - name: update java
+       package:
+               name: "{{ java_home }}"
+               state: present
+     - name: create user
+       ansible.builtin.user:
+               create_home: yes
+               group: "{{ username }}"
+               home: "{{ home_dir }}"
+               name: "{{ username }}"
+               shell: "{{ default_shell }}"
+               state: present
+               when: ansible_facts['os_family'] == "Debian"
