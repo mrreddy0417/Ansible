@@ -1,0 +1,12 @@
+---
+- name: Intall tomcat on RHEL 7
+  become: yes
+  host: AppServer
+  vars:
+    - username: tomcat
+    - home_dir: /opt/tomcat
+    - default_shell: /bin/false                                 
+    - tomcat_version: 9.0.6
+ 
+
+

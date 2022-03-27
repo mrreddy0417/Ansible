@@ -7,6 +7,9 @@
           - default_shell: /bin/false
           - group: tomcat
           - home_dir: /opt/tomcat
+          - tomcat_version: 9.0.60
+          - tomcat_latest: /opt/tomcat/latest
+          - tomcat_bin_directory: /opt/tomcat/latest/bin
   tasks:
      - name: update cache
        apt:
@@ -25,4 +28,7 @@
                name: "{{ username }}"
                shell: "{{ default_shell }}"
                state: present
-               when: ansible_facts['os_family'] == "Debian"
+     -  name: Download Tomcat
+        ansible.builtin.get_url:
+        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+        dest: "{ home_dir }"
