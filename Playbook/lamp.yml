@@ -1,9 +1,8 @@
-- name: Install Lamp
+---
+- name: install lamp
   become: yes
   hosts: appserver
-  tasks:
-- name: install update
-  apt: 
-     name: "*"
-     state: latest
-     update_cache: yes
+- tasks:
+    - name: install apt
+      apt: 
+      update_cache: yes
