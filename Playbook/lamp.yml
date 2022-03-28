@@ -3,6 +3,6 @@
   become: yes
   hosts: appserver
 - tasks:
-    - name: install apt
-      apt: 
+- name: install apt
+  apt: 
       update_cache: yes
