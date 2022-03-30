@@ -1,5 +1,6 @@
 ---
 - name: Install Lamp on slack
+  become: yes
   hosts: webserver  
   tasks:
     - name: install update on cache
@@ -12,3 +13,5 @@
         name: apache2
         state: present
       when: ansible_facts['os_family'] == "Debian"
+    - name: install php compoents
+      
