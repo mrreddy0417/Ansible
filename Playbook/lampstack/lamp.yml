@@ -7,3 +7,16 @@
     apt:
       update_cache: yes
     when: ansible_facts['os_family'] == "Debian"
+  - name: install apache serve
+    ansible.builtin.package:
+      name: " {{ apache_package }}"
+      state: present
+    notify:
+        - ensure apache is enabled and restarted
+  - name: install php package
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ php_package }}"
+    notify:
+        - ensure apache is enabled and restarted
