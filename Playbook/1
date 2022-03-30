@@ -1,0 +1,8 @@
+--- 
+- 
+  become: true
+  host: all
+  name: "Install Lamp"
+  tasks: ~
+-  name: "install update apt"
+
