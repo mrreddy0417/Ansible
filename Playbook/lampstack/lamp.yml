@@ -20,3 +20,9 @@
       loop: "{{ php_packages }}"
       notify:
         - ensure apache is enabled and restarted
+    - name: copy php info page
+      ansible.builtin.copy:
+        src: www/info.php
+        dest: "{{ php_page_location }}"
+        notify:
+        - ensure apache is enabled and restarted
