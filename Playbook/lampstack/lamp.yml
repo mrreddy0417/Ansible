@@ -1,7 +1,7 @@
 ---
 - name: install lamp on slack
-- become: yes
-- hosts: webserver
+  become: yes
+  hosts: webserver
   tasks:
   - name: install yum update
     apt:
