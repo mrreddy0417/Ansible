@@ -4,6 +4,10 @@
   become: yes
   hosts: all
   tasks:
+    - name: install updata apt cache
+      apt:
+        update_cahce: yes
+      when: ansible_facts['os_family'] == "Debian"
     - name: install utilites
       ansible.builtin.package:
         name: "{{ item }}"
