@@ -1,0 +1,9 @@
+---
+- name: install java package
+  become: yes
+  hosts: all
+  tasks:
+    - name: install jdk packag
+      apt:
+        package: "{{ java_package }}"
+      when: ansible_facts['os_family'] == "Debian"
