@@ -1,0 +1,11 @@
+---
+- name: install jdk package
+  become: yes
+  hosts: all
+  tasks: 
+    - name: install jdk
+      package:
+        name: "{{ java_package }}"
+        state: present
+
+

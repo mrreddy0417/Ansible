@@ -1,0 +1,13 @@
+---
+- import_playbook: java.yml
+- name: install utilits
+  become: yes
+  hosts: all
+  tasks:
+    - name: install utilites
+      ansible.builtin.package:
+        name: "{{ item }}"
+      loop:
+        - git
+        - tree
+        - nano
