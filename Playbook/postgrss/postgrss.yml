@@ -1,6 +1,6 @@
 ---
-- name: install postgrss
-  hosts: all
+- name: install postgres
+  hosts: db
   roles:
     - role: buluma.postgres
       become: yes
