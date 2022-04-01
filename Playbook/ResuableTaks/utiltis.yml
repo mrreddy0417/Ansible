@@ -1,0 +1,13 @@
+---
+- name: install utilites
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+    loop:
+      - git
+      - nano
+      - nettools
+- name:  ensure the file is created
+  ansible.builtin.file:
+    path: /tmp/message
+    state: file

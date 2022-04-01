@@ -1,0 +1,7 @@
+---
+- name: usage tasks
+  become: yes
+  hosts: all
+  tasks:
+    - include_tasks: utiltis.yml
+    
